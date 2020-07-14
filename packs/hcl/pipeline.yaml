@@ -1,0 +1,10 @@
+agent:
+  label: builder-terraform
+  container: gcr.io/jenkinsxio/builder-terraform
+pipelines:
+  release:
+    build:
+      steps:
+        - sh: terraform -v
+          name: tf-release
+          container: gcr.io/jenkinsxio/builder-terraform
