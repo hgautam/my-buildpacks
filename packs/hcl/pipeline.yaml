@@ -6,5 +6,11 @@ pipelines:
     build:
       steps:
         - sh: terraform -v
-          name: tf-release
+          name: tf-version-check
+          container: gcr.io/jenkinsxio/builder-terraform
+        - sh: terraform init
+          name: tf-init
+          container: gcr.io/jenkinsxio/builder-terraform
+        - sh: terraform apply -auto-approve
+          name: tf-apply
           container: gcr.io/jenkinsxio/builder-terraform
